@@ -69,24 +69,10 @@ class CreateAllTablesInDb extends Migration
      */
     public function down()
     {
-			Schema::table('color_product', function (Blueprint $table) {
-				$table->dropForeign('color_id');
-				$table->dropColumn('color_id');
-				$table->dropForeign('product_id');
-				$table->dropColumn('product_id');
-      });
+			// Si creamos la tabla completa, no es necesario borrar las FK y las columnas.
+			// Podemos borrar la tabla directamente
       Schema::dropIfExists('color_product');
-
-			Schema::table('products', function (Blueprint $table) {
-				$table->dropForeign('category_id');
-				$table->dropColumn('category_id');
-				$table->dropForeign('brand_id');
-				$table->dropColumn('brand_id');
-				$table->dropForeign('user_id');
-				$table->dropColumn('user_id');
-      });
 			Schema::dropIfExists('products');
-
 			Schema::dropIfExists('colors');
 			Schema::dropIfExists('categories');
 			Schema::dropIfExists('brands');
