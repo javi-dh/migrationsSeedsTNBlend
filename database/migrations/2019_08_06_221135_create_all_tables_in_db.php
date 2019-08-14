@@ -49,17 +49,17 @@ class CreateAllTablesInDb extends Migration
         $table->timestamps();
       });
 
-			Schema::create('color_product', function (Blueprint $table) {
-				$table->bigIncrements('id');
+		Schema::create('color_product', function (Blueprint $table) {
+			$table->bigIncrements('id');
 
-				$table->unsignedBigInteger('color_id')->nullable();
-    		$table->foreign('color_id')->references('id')->on('colors');
+			$table->unsignedBigInteger('color_id')->nullable();
+		$table->foreign('color_id')->references('id')->on('colors');
 
-				$table->unsignedBigInteger('product_id')->nullable();
-    		$table->foreign('product_id')->references('id')->on('products');
+			$table->unsignedBigInteger('product_id')->nullable();
+		$table->foreign('product_id')->references('id')->on('products');
 
-				$table->timestamps();
-			});
+			$table->timestamps();
+		});
     }
 
     /**
@@ -69,12 +69,12 @@ class CreateAllTablesInDb extends Migration
      */
     public function down()
     {
-			// Si creamos la tabla completa, no es necesario borrar las FK y las columnas.
-			// Podemos borrar la tabla directamente
+		// Si creamos la tabla completa, no es necesario borrar las FK y las columnas.
+		// Podemos borrar la tabla directamente
       Schema::dropIfExists('color_product');
-			Schema::dropIfExists('products');
-			Schema::dropIfExists('colors');
-			Schema::dropIfExists('categories');
-			Schema::dropIfExists('brands');
+		Schema::dropIfExists('products');
+		Schema::dropIfExists('colors');
+		Schema::dropIfExists('categories');
+		Schema::dropIfExists('brands');
     }
 }
